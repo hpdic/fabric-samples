@@ -12,11 +12,23 @@
 - `sudo ./bootstrap.sh`
 - `export PATH=$HOME/hyfa/fabric-samples/bin:$PATH`
 
-## Test Network
+## Test Basic Network
 
 - `cd /home/cc/hyfa/fabric-samples/test-network`
 - `sudo ./network.sh up`
 - `sudo ./network.sh down`
+
+## Test More Realistic Network
+
+```bash
+ export PATH=$PATH:$(realpath ../bin)
+ export FABRIC_CFG_PATH=$(realpath ../config)
+ export $(./setOrgEnv.sh Org2 | xargs)
+ 
+ ./setOrgEnv.sh
+ ./network.sh up createChannel -ca -c mychannel -s couchdb
+ peer channel list
+```
 
 # Running the test network
 
