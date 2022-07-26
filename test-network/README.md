@@ -33,8 +33,15 @@ peer channel list
 ## Test Chaincode
 
 ```bash
+# For simple installation
 peer chaincode install -n sacc -v 1.0 -p ../chaincode/sacc/  # DFZ: install the sample sacc chaincode
 peer chaincode list --installed
+
+# For full deployment (refer to: https://github.com/hpdic/fabric-samples/tree/main/asset-transfer-basic)
+./network.sh up createChannel -c mychannel -ca
+./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-java/ -ccl java
+cd ../asset-transfer-basic/application-gateway-java
+./gradlew run
 ```
 
 # Running the test network
