@@ -18,16 +18,23 @@
 - `sudo ./network.sh up`
 - `sudo ./network.sh down`
 
-## Test More Realistic Network
+## Test Channels
 
 ```bash
- export PATH=$PATH:$(realpath ../bin)
- export FABRIC_CFG_PATH=$(realpath ../config)
- export $(./setOrgEnv.sh Org2 | xargs)
- 
- ./setOrgEnv.sh
- ./network.sh up createChannel -ca -c mychannel -s couchdb
- peer channel list
+export PATH=$PATH:$(realpath ../bin)
+export FABRIC_CFG_PATH=$(realpath ../config)
+export $(./setOrgEnv.sh Org2 | xargs)
+
+./setOrgEnv.sh
+./network.sh up createChannel -ca -c mychannel -s couchdb
+peer channel list
+```
+
+## Test Chaincode
+
+```bash
+peer chaincode install -n sacc -v 1.0 -p ../chaincode/sacc/  # DFZ: install the sample sacc chaincode
+peer chaincode list --installed
 ```
 
 # Running the test network
